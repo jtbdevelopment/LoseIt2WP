@@ -1,0 +1,8 @@
+As noted elsewhere, this package is originally from asmack library
+http://code.google.com/p/asmack/
+which appeared to incorporate code from the Apache Harmony code base.
+
+I removed the unused asmack classes and renamed the apache classes from
+org.apache.harmony.javax... to javax as they need to be direct matches for classes for android javamail to work
+
+No other modifications or credit claimed.

@@ -1,0 +1,5 @@
+The classes here are all almost entirely from
+http://code.google.com/p/google-mail-xoauth-tools/
+Any formatting changes are just do to importing the javax security classes it implements.
+
+We did make one minor modifcation to XauthAuthenticator to make the smtp session available as well as the transport.
