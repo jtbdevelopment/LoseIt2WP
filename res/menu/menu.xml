@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/emailsettings" android:title="Email Settings"/>
+    <item android:id="@+id/settings" android:title="WP Settings"/>
+    <item android:id="@+id/hideshowsent" android:title="Sent"/>
+    <item android:id="@+id/hideshowskiped" android:title="Skipped"/>
+    <item android:id="@+id/clearlocal" android:title="Reset tracking"/>
+</menu>

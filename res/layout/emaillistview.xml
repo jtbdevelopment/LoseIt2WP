@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#FFFFFF"
+        >
+    <Button android:id="@+id/checkemail" 
+            android:layout_height="30dp"
+            android:textSize="10dp"
+            android:layout_width="fill_parent"
+            android:textColor="#FFFFFF"
+            android:text="Refresh"/>
+    <ListView android:id="@+id/emaillist"
+              android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:dividerHeight="0.1sp"
+              android:divider="#D7C3F8"
+              android:padding="0px"
+              android:layout_margin="0dp"
+              android:listSelector="@drawable/emaillistviewitemselector"
+            />
+</LinearLayout>
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <Spinner
+             android:id="@+id/emailAdress"
+             android:layout_alignParentLeft="true"
+             android:entries="@array/defaultEmailList"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"/>
+
+    <Button android:id="@+id/checkOAuth"
+            android:text="Check Access"
+            android:enabled="true"
+            android:layout_below="@+id/emailAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+    </Button>
+
+    <Button android:id="@+id/grantOAuth"
+            android:text="Grant Access"
+            android:enabled="true"
+            android:layout_below="@+id/emailAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+    </Button>
+
+    <Button android:id="@+id/revokeOAuth"
+            android:text="Revoke Access"
+            android:enabled="true"
+            android:layout_below="@+id/emailAdress"
+            android:layout_toRightOf="@+id/checkOAuth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+    </Button>
+
+    <TextView android:id="@+id/oauthStatusRead"
+              android:layout_below="@+id/checkOAuth"
+              android:text="Status"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content">
+    </TextView>
+    <TextView android:id="@+id/oauthStatusWrite"
+              android:layout_below="@+id/oauthStatusRead"
+              android:text="Status"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content">
+    </TextView>
+</RelativeLayout>
