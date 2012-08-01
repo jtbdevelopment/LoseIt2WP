@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
-    <application android:label="@string/app_name" android:icon="@drawable/ic_li2wp">
+    <application android:label="@string/app_name" android:icon="@drawable/ic_li2wp" android:debuggable="false">
         <activity android:name=".android.activities.EmailListView"
                   android:label="@string/app_name"
                   android:theme="@android:style/Theme.NoTitleBar">
