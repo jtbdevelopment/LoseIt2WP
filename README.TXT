@@ -21,3 +21,9 @@ Most Icons Came from
 http://www.androidicons.com/ by Guenther Beyer under creative commons
 except for app icon which is clearly a combination of the Lose It! and WordPress icons.
 
+
+
+IMPORTANT TODO's
+License
+Proper build file (uses IntelliJ for now)
+not including jars in package (part of build)
