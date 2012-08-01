@@ -1,0 +1,2 @@
+This is meant to be an open source application
+However we have yet to choose a license yet so all rights reserved for now for our IP.
