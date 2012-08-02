@@ -32,6 +32,7 @@ public class ToWordpressTransform {
         start = newContent.indexOf("<body");
         end = newContent.indexOf("<", start + 1);
         newContent = newContent.substring(0, end - 1) + "\n" + addWPShortCodes(preferences, summaryMessage) + newContent.substring(end, newContent.length());
+        newContent = newContent.replace("</body>", "Posted with the assistance of LoseIt2WP, a free Android App.</body>");
         return newContent;
     }
 
