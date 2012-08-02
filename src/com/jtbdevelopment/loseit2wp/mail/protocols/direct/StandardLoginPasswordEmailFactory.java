@@ -24,16 +24,10 @@ public class StandardLoginPasswordEmailFactory {
     public static Store getIMAP(final String hostName, final Integer hostPort, final SharedPreferences preferences) throws MessagingException {
         Properties props = System.getProperties();
         props.setProperty("mail.store.protocol", "imaps");
-        Log.d(LoseIt2WP.LOG_TAG, "Transport: " + props.getProperty("mail.transport.protocol"));
-        Log.d(LoseIt2WP.LOG_TAG, "Store: " + props.getProperty("mail.store.protocol"));
-        Log.d(LoseIt2WP.LOG_TAG, "Host: " + props.getProperty("mail.imap.host"));
-        Log.d(LoseIt2WP.LOG_TAG, "Authentication: " + props.getProperty("mail.imap.auth"));
-        Log.d(LoseIt2WP.LOG_TAG, "Port: " + props.getProperty("mail.imap.port"));
         Session session = Session.getInstance(System.getProperties());
         session.setDebug(false);
         Store store = session.getStore("imaps");
         store.connect(hostName, hostPort,  LoseIt2WPPreferences.getEmailLogin(preferences), LoseIt2WPPreferences.getEmailPassword(preferences));
-        Log.i(LoseIt2WP.LOG_TAG, "Store: " + store.toString());
         return store;
     }
     

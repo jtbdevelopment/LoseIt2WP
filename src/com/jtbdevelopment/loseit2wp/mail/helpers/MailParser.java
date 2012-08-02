@@ -21,7 +21,6 @@ public class MailParser {
         try {
             return message.getSubject();
         } catch (Exception e) {
-            Log.d(LOG_TAG, "Exception in MailParser.getSubject", e);
             throw new RuntimeException(e);
         }
     }
@@ -30,7 +29,6 @@ public class MailParser {
         try {
             return message.getSentDate();
         } catch (Exception e) {
-            Log.d(LOG_TAG, "Exception in MailParser.getMailboxTime", e);
             throw new RuntimeException(e);
         }
     }
@@ -39,7 +37,6 @@ public class MailParser {
         try {
             return getContentPrivate(p);
         } catch (Exception e) {
-            Log.d(LOG_TAG, "Exception in MailParser.getContent", e);
             throw new RuntimeException(e);
         }
     }

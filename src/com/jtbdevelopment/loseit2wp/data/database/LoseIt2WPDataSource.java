@@ -115,7 +115,6 @@ public class LoseIt2WPDataSource {
         try {
             writeDatabase.update(DATABASE_MESSAGE_TABLE.getTableName(), args, NEW_SUMMARY + "=1", null);
         } catch (Throwable t) {
-            Log.e(LoseIt2WP.LOG_TAG, t.toString());
             throw new RuntimeException(t);
         }
     }

@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -164,12 +163,9 @@ public class OAuthSettingsView extends Activity {
         try {
             statusRead.setText("Processing response ..");
             statusWrite.setText("");
-            Log.i(LoseIt2WP.LOG_TAG, "onNewIntent");
             Uri uri = intent.getData();
             if (uri != null) {
-                Log.i(LoseIt2WP.LOG_TAG, "uri.getScheme()? " + uri.getScheme());
                 if (uri.getScheme().equals(LoseIt2WP.OAUTH_APPNAME.toLowerCase())) {
-                    Log.i(LoseIt2WP.LOG_TAG, "got it");
                     String positionString = uri.getQueryParameter("selection");
                     if (positionString == null || positionString.equals("") || Integer.parseInt(positionString) < 0) {  //More validating parseable
                         statusRead.setText("Something went wrong - no account info returned");
@@ -177,8 +173,6 @@ public class OAuthSettingsView extends Activity {
                         String oauthVerifier = uri.getQueryParameter(OAuth.OAUTH_VERIFIER);
                         String[] tokens = helper.getAccessToken(oauthVerifier);
                         String token = tokens[0], tokenSecret = tokens[1];
-                        Log.i(LoseIt2WP.LOG_TAG, token);
-                        Log.i(LoseIt2WP.LOG_TAG, tokenSecret);
                         LoseIt2WPPreferences.setOAuthTokens(preferences, emailAccounts.getItemAtPosition(Integer.parseInt(positionString)).toString(), token, tokenSecret);
                         statusRead.setText("Got it ..");
                         statusWrite.setText("Probably should test it out.. :)");
@@ -186,37 +180,29 @@ public class OAuthSettingsView extends Activity {
                         resetScreen(false);
                     }
                 } else {
-                    Log.i(LoseIt2WP.LOG_TAG, "non matching schema");
                     statusRead.setText("Something went wrong - non matching schema");
                 }
             } else {
-                Log.i(LoseIt2WP.LOG_TAG, "uri is null");
                 statusRead.setText("Something went wrong - null uri");
             }
         } catch (Exception e) {
-            Log.i(LoseIt2WP.LOG_TAG, "exception", e);
             statusRead.setText("Something went wrong - general failure");
         }
     }
 
     private void grantOAuth() {
         try {
-            Log.i(LoseIt2WP.LOG_TAG, "Initializing OAuthHelper");
             helper = new OAuthHelper(LoseIt2WP.ANONYMOUS, LoseIt2WP.ANONYMOUS, HTTPS_MAIL_GOOGLE_COM, LoseIt2WP.LOSE_IT2_WP_CALLBACK + emailAccounts.getSelectedItemPosition(), LoseIt2WP.OAUTH_APPNAME);
-            Log.i(LoseIt2WP.LOG_TAG, "Getting Request Token");
             String url = helper.getRequestToken();
-            Log.i(LoseIt2WP.LOG_TAG, "Activity with url " + url);
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url)).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_FROM_BACKGROUND);
             startActivity(intent);
         } catch (Exception e) {
-            Log.i(LoseIt2WP.LOG_TAG, "exception ", e);
             statusRead.setText("Failed to start ..");
         }
     }
 
     private void testOAuth() {
         SharedPreferences preferences = LoseIt2WPPreferences.getSharedPreferences(this);
-        Log.i(LoseIt2WP.LOG_TAG, "Testing OAUTH");
         try {
             Session session = XoauthLoginEmailFactory.getSMTPSession();
 
@@ -242,7 +228,6 @@ public class OAuthSettingsView extends Activity {
             statusRead.setText("Verified ability to check inbox - you have " + count + " emails.");
             folder.close(false);
         } catch (Exception e) {
-            Log.i(LoseIt2WP.LOG_TAG, "exception", e);
             statusRead.setText("Houston we have a problem");
         }
     }

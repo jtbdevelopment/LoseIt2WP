@@ -5,8 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import com.jtbdevelopment.loseit2wp.android.LoseIt2WP;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,8 +15,8 @@ import com.jtbdevelopment.loseit2wp.android.LoseIt2WP;
 public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(final Context context, final Intent intent) {
-        if("android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
-            Log.i(LoseIt2WP.LOG_TAG, "Boot received");
+        if(!"android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
+            return;
         }
         kickOffMailMonitor(context);
     }

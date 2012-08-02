@@ -40,7 +40,6 @@ public class EmailReader extends javax.mail.Authenticator {
             store.close();
             return messages;
         } catch (Exception e) {
-            Log.e(EmailReader.class.getName(), e.getMessage(), e);
             //  TODO - define exception
             throw new RuntimeException(e);
         }

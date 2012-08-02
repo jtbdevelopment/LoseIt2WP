@@ -4,12 +4,10 @@ import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import com.jtbdevelopment.loseit2wp.R;
-import com.jtbdevelopment.loseit2wp.android.LoseIt2WP;
 import com.jtbdevelopment.loseit2wp.data.LoseItSummaryMessage;
 import com.jtbdevelopment.loseit2wp.data.preferences.LoseIt2WPPreferences;
 import com.jtbdevelopment.loseit2wp.data.transforms.ToWordpressTransform;
@@ -45,7 +43,6 @@ public class EmailPreview extends ActivityWithDataSource {
                     EmailSender.sendMail(preferences, summaryMessage.getSubject(), ToWordpressTransform.transformContent(preferences, summaryMessage));
                 } catch (Exception e) {
                     new AlertDialog.Builder(view.getContext()).setMessage("Failed to send!").create();
-                    Log.e(LoseIt2WP.LOG_TAG, e.getMessage());
                     throw new RuntimeException(e);
                 }
                 dataSource.updateSummaryAsSent(summaryMessage);

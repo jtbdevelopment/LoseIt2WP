@@ -43,7 +43,7 @@ public class EmailSender {
             SMTPTransport transport = XoauthLoginEmailFactory.getSMTPTransport(session, GMAIL_SMTP_HOST, GMAIL_SMTP_OATH_PORT, preferences);
             transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
         } catch (Exception e) {
-            Log.e(EmailSender.class.getName(), e.getMessage());
+            //
         }
     }
 }

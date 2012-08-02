@@ -7,14 +7,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.jtbdevelopment.loseit2wp.R;
 import com.jtbdevelopment.loseit2wp.data.preferences.LoseIt2WPPreferences;
 
 import static android.provider.ContactsContract.CommonDataKinds.Email.*;
-import static com.jtbdevelopment.loseit2wp.android.LoseIt2WP.LOG_TAG;
 
 /**
  * Created by IntelliJ IDEA.
@@ -122,8 +120,6 @@ public class SettingsView extends Activity {
             String email = "";
             try {
                 Uri result = data.getData();
-                Log.v(LOG_TAG, "Got a contact result: "
-                        + result.toString());
 
                 // get the contact id from the Uri
                 String id = result.getLastPathSegment();
@@ -136,12 +132,9 @@ public class SettingsView extends Activity {
                 // let's just get the first email
                 if (cursor.moveToFirst()) {
                     email = cursor.getString(emailIdx);
-                    Log.v(LOG_TAG, "Got email: " + email);
-                } else {
-                    Log.w(LOG_TAG, "No results");
                 }
             } catch (Exception e) {
-                Log.e(LOG_TAG, "Failed to get email data", e);
+                //
             } finally {
                 if (cursor != null) {
                     cursor.close();

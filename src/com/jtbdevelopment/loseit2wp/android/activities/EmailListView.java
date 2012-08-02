@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import com.jtbdevelopment.loseit2wp.R;
-import com.jtbdevelopment.loseit2wp.android.LoseIt2WP;
 import com.jtbdevelopment.loseit2wp.android.activities.actions.RefreshEmailListener;
 import com.jtbdevelopment.loseit2wp.android.activities.adapters.LoseItSummaryAdapter;
 import com.jtbdevelopment.loseit2wp.android.receivers.BootReceiver;
@@ -119,21 +117,18 @@ public class EmailListView extends ActivityWithDataSource {
 
     @Override
     protected void onRestart() {  
-        Log.d(LoseIt2WP.LOG_TAG, "Restart");
         refreshEmailList();
         super.onResume();
     }
 
     @Override
     protected void onResume() {
-        Log.d(LoseIt2WP.LOG_TAG, "Resume");
         refreshEmailList();
         super.onResume();
     }
 
     @Override
     protected void onUserLeaveHint() {
-        Log.d(LoseIt2WP.LOG_TAG, "UserLeaveHint");
         dataSource.removeNewFromExistingSummaries();
         super.onUserLeaveHint();
     }

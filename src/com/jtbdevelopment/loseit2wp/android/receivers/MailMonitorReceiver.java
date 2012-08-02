@@ -5,8 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import com.jtbdevelopment.loseit2wp.android.LoseIt2WP;
 import com.jtbdevelopment.loseit2wp.android.services.MailMonitorService;
 
 import java.util.Calendar;
@@ -26,7 +24,6 @@ public class MailMonitorReceiver extends BroadcastReceiver {
     
     @Override
     public void onReceive(final Context context, final Intent intent) {
-        Log.i(LoseIt2WP.LOG_TAG, "Responding to intent " + intent.toString());
         Intent serviceIntent = new Intent(context, MailMonitorService.class);
         context.startService(serviceIntent);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -50,7 +47,6 @@ public class MailMonitorReceiver extends BroadcastReceiver {
                 offset = OFFSET_DAILY;
                 break;
         }
-        Log.i(LoseIt2WP.LOG_TAG, "Setting wake up offset to " + offset);
         return currentTimeMillis + offset;
     }
 }
