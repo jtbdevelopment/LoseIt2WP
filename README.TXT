@@ -9,8 +9,8 @@ This project utilizes code from:
 http://nilvec.com/implementing-smtp-or-imap-xoauth-authentication-in-java/
 http://code.google.com/p/google-mail-xoauth-tools/
 
-http://code.google.com/p/asmack/
-http://harmony.apache.org/
+http://code.google.com/p/asmack/ (which in turn utilizes code from)
+http://harmony.apache.org/ (which is actually the code used from asmack)
 
 It utilizes libraries from:
 http://code.google.com/p/javamail-android/
@@ -22,6 +22,10 @@ http://www.androidicons.com/ by Guenther Beyer under creative commons
 except for app icon which is clearly a combination of the Lose It! and WordPress icons.
 
 
+Ideas from
+http://www.androidhive.info/2012/02/android-custom-listview-with-image-and-text/ - highlight on list
+http://stackoverflow.com/questions/4354939/understanding-the-use-of-colormatrix-and-colormatrixcolorfilter-to-modify-a-draw - how to change icon colors
+Hmm someone's article on making listview's with icons
 
 IMPORTANT TODO's
 License
