@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import com.jtbdevelopment.loseit2wp.android.services.MailMonitorService;
+import com.jtbdevelopment.loseit2wp.mail.helpers.NetworkStatus;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -18,25 +19,31 @@ import java.util.GregorianCalendar;
  * Time: 9:18 PM
  */
 public class MailMonitorReceiver extends BroadcastReceiver {
-    private static final int OFFSET_HOURLY = 60 * 60 * 1000;
+    private static final int OFFSET_HALF_HOURLY = 30 * 60 * 1000;
+    private static final int OFFSET_HOURLY = OFFSET_HALF_HOURLY * 2;
     private static final int OFFSET_HALFDAY = OFFSET_HOURLY * 12;
     private static final int OFFSET_DAILY = OFFSET_HALFDAY * 2;
-    
+
     @Override
     public void onReceive(final Context context, final Intent intent) {
-        Intent serviceIntent = new Intent(context, MailMonitorService.class);
-        context.startService(serviceIntent);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, MailMonitorReceiver.class), 0);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, determineNextWakeUp(), pendingIntent);
+        if (NetworkStatus.isOnline(context)) {
+            Intent serviceIntent = new Intent(context, MailMonitorService.class);
+            context.startService(serviceIntent);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, determineNextWakeUp(), pendingIntent);
+        } else {
+            //  Network down - try again in 30 minutes
+            alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + OFFSET_HALF_HOURLY, pendingIntent);
+        }
     }
-    
+
     private long determineNextWakeUp() {
         int offset;
         long currentTimeMillis = System.currentTimeMillis();
         Date now = new Date(currentTimeMillis);
         Calendar cal = new GregorianCalendar(now.getYear(), now.getMonth(), now.getDay());
-        switch(cal.get(Calendar.DAY_OF_WEEK)) {
+        switch (cal.get(Calendar.DAY_OF_WEEK)) {
             case 1:  // mondays
                 offset = OFFSET_HOURLY;
                 break;
