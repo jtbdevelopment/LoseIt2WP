@@ -71,7 +71,9 @@
           <root url="jar://$MODULE_DIR$/libs/oauth-20100601.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/libs/oauth-20100601-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">

@@ -80,9 +80,12 @@ public class ToWordpressTransform {
     }
 
     private static Date determineSummaryTime(final LoseItSummaryMessage summaryMessage) {
-        int comma = summaryMessage.getSubject().indexOf(',');
-        String subjectMonth = summaryMessage.getSubject().substring(comma + 2, comma + 5);
-        String subjectDate = summaryMessage.getSubject().substring(comma + 6, comma + 8);
+        String subject = summaryMessage.getSubject();
+        int comma = subject.indexOf(',');
+        int firstSpace = subject.indexOf(' ', comma);
+        int secondSpace = subject.indexOf(' ', firstSpace + 1);
+        String subjectMonth = summaryMessage.getSubject().substring(firstSpace + 1, secondSpace - 1);
+        String subjectDate = summaryMessage.getSubject().substring(secondSpace + 1, secondSpace + 3);
         if (!subjectDate.matches("((-|\\\\+)?[0-9]+(\\\\.[0-9]+)?)+")) {
             subjectDate = subjectDate.substring(0, 1);
         }
