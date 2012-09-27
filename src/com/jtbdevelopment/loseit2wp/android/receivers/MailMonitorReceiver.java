@@ -44,10 +44,11 @@ public class MailMonitorReceiver extends BroadcastReceiver {
         Date now = new Date(currentTimeMillis);
         Calendar cal = new GregorianCalendar(now.getYear(), now.getMonth(), now.getDay());
         switch (cal.get(Calendar.DAY_OF_WEEK)) {
-            case 1:  // mondays
+            case Calendar.MONDAY:  // mondays
                 offset = OFFSET_HOURLY;
                 break;
-            case 2:  // tuesdays
+            case Calendar.SUNDAY:
+            case Calendar.TUESDAY:  // tuesdays
                 offset = OFFSET_HALFDAY;
                 break;
             default:
