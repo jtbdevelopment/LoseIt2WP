@@ -41,14 +41,15 @@ public class MailMonitorReceiver extends BroadcastReceiver {
     private long determineNextWakeUp() {
         int offset;
         long currentTimeMillis = System.currentTimeMillis();
-        Date now = new Date(currentTimeMillis);
-        Calendar cal = new GregorianCalendar(now.getYear(), now.getMonth(), now.getDay());
+        Date now = new Date();
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(now);
         switch (cal.get(Calendar.DAY_OF_WEEK)) {
-            case Calendar.MONDAY:  // mondays
+            case Calendar.MONDAY:
                 offset = OFFSET_HOURLY;
                 break;
             case Calendar.SUNDAY:
-            case Calendar.TUESDAY:  // tuesdays
+            case Calendar.TUESDAY:
                 offset = OFFSET_HALFDAY;
                 break;
             default:

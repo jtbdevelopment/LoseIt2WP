@@ -64,9 +64,7 @@ public class ToWordpressTransform {
         long delayInMS = (publishTime.getTime() - now.getTime());
         long delayInMinutes = delayInMS / 1000 / 60;
         delayInMinutes -= now.getTimezoneOffset();
-        if (delayInMinutes < 0) {
-            delayInMinutes = 0;
-        }
+        delayInMinutes = Math.max(0, delayInMinutes);   //  Skip negative numbers
         return String.format("%+d", delayInMinutes);
     }
 
@@ -84,7 +82,7 @@ public class ToWordpressTransform {
         int comma = subject.indexOf(',');
         int firstSpace = subject.indexOf(' ', comma);
         int secondSpace = subject.indexOf(' ', firstSpace + 1);
-        String subjectMonth = summaryMessage.getSubject().substring(firstSpace + 1, secondSpace - 1);
+        String subjectMonth = summaryMessage.getSubject().substring(firstSpace + 1, secondSpace);
         String subjectDate = summaryMessage.getSubject().substring(secondSpace + 1, secondSpace + 3);
         if (!subjectDate.matches("((-|\\\\+)?[0-9]+(\\\\.[0-9]+)?)+")) {
             subjectDate = subjectDate.substring(0, 1);
@@ -92,6 +90,7 @@ public class ToWordpressTransform {
         Integer dayOfMonth = Integer.parseInt(subjectDate);
         Calendar calendar = new GregorianCalendar();
         calendar.set(summaryMessage.getMailboxTime().getYear() + 1900, usaShortMonthData.indexOf(subjectMonth), dayOfMonth, 0, 0, 0);
+        //  Roll it a week later.
         calendar.add(Calendar.DAY_OF_WEEK, 7);
         return calendar.getTime();
     }
